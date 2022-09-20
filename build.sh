@@ -24,7 +24,7 @@ for flavour in darwin-x64 darwin-arm64v8; do
   if [ $PLATFORM = $flavour ] && [ "$(uname)" == "Darwin" ]; then
     echo "Building $flavour..."
     export PATH=$PATH:/opt/local/bin
-    port install mercurial autoreconf cvs
+    sudo port install mercurial autoreconf cvs
     installBoost
     #cd netanim-3.107
     #make
