@@ -37,13 +37,15 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           brew update
-          brew install advancecomp automake brotli nasm pkg-config cartr/qt4/qt-legacy-formula bzr rar p7zip xz cMake
+          brew install advancecomp automake pkg-config cartr/qt4/qt-legacy-formula bzr rar p7zip xz cMake
           curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.7.2.tar.bz2
           tar xf MacPorts-2.7.2.tar.bz2
           cd MacPorts-2.7.2/
           ./configure
           make
           sudo make install
+          export PATH=$PATH:/opt/local/bin
+          sudo port -v selfupdate
           cd ..
       - name: Build ${{ matrix.platform }}
         id: build-release
