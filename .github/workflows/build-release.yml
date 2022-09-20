@@ -38,6 +38,13 @@ jobs:
         run: |
           brew update
           brew install advancecomp automake brotli nasm pkg-config cartr/qt4/qt-legacy-formula bzr rar p7zip xz cMake
+          curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.7.2.tar.bz2
+          tar xf MacPorts-2.7.2.tar.bz2
+          cd MacPorts-2.7.2/
+          ./configure
+          make
+          sudo make install
+          cd ..
       - name: Build ${{ matrix.platform }}
         id: build-release
         run: ./build.sh 3.29 ${{ matrix.platform }}
