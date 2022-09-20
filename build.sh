@@ -28,7 +28,7 @@ for flavour in darwin-x64 darwin-arm64v8; do
     installBoost
     #cd netanim-3.107
     #make
-    pip install waf
+    pip3 install waf
     buildNs3
     tar czvf $flavour.tgz $(find . -name 'lib/lib*.so') $(find . -name 'include/*.h');
     exit 0
