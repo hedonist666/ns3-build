@@ -51,7 +51,7 @@ for flavour in linux-x64 linux-armv6 linux-armv7 linux-arm64v8; do
   if [ $PLATFORM = "all" ] || [ $PLATFORM = $flavour ]; then
     echo "Building $flavour..."
     docker build -t ns3-dev-$flavour $flavour
-    mkdir $flavour
-    docker run --rm -v $(pwd)/$flavour$:/root/output ns3-dev-$flavour sh -c "cp -r /root/ns3/* /root/output"
+    mkdir $flavour-build
+    docker run --rm -v $(pwd)/$flavour-build:/root/output ns3-dev-$flavour sh -c "cp -r /root/ns3/* /root/output"
   fi
 done
