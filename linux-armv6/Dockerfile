@@ -7,7 +7,7 @@ WORKDIR $root
 ARG version="3.29"
 
 #ns-3 dependencies
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim build-essential autoconf automake libxmu-dev python-pygraphviz cvs mercurial bzr git cmake p7zip-full python-matplotlib python-tk python-dev python-kiwi qt4-dev-tools qt4-qmake qt4-qmake qt4-default gnuplot-x11 tshark wireshark
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim wget build-essential autoconf automake libxmu-dev python-pygraphviz cvs mercurial bzr git cmake p7zip-full python-matplotlib python-tk python-dev python-kiwi qt4-dev-tools qt4-qmake qt4-qmake qt4-default gnuplot-x11 tshark wireshark
 
 
 #boost installation (required for openflow ns-3 integration)
