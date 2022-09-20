@@ -14,7 +14,7 @@ installBoost() {
 buildNs3() {
   hg clone http://code.nsnam.org/bake
   cd bake
-  ./bake.py configure -e ns-3-allinone 
+  ./bake.py configure -e ns-3-allinone
   ./bake.py deploy -v
 }
 
@@ -23,6 +23,7 @@ buildNs3() {
 for flavour in darwin-x64 darwin-arm64v8; do
   if [ $PLATFORM = $flavour ] && [ "$(uname)" == "Darwin" ]; then
     echo "Building $flavour..."
+    root=$(pwd)
     brew update
     brew install advancecomp automake pkg-config cartr/qt4/qt-legacy-formula bzr rar p7zip xz cMake
     curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.7.2.tar.bz2
@@ -34,13 +35,15 @@ for flavour in darwin-x64 darwin-arm64v8; do
     export PATH=$PATH:/opt/local/bin
     sudo port -v selfupdate
     sudo port install mercurial autoconf cvs
-    cd ..
+    cd $root
     installBoost
+    cd $root
     #cd netanim-3.107
     #make
     pip3 install waf
     buildNs3
     tar czvf $flavour.tgz $(find . -name 'lib/lib*.so') $(find . -name 'include/*.h');
+    ls -R
     exit 0
   fi
 done
@@ -66,3 +69,4 @@ for flavour in linux-x64 linux-armv6 linux-armv7 linux-arm64v8; do
     tar czvf $flavour.tgz $(pwd)/$flavour-build/*
   fi
 done
+ls -R
