@@ -39,6 +39,7 @@ for flavour in darwin-x64 darwin-arm64v8; do
     installBoost
     cd $root
     pip3 install waf
+    ls -R
     buildNs3
     tar czvf $flavour.tgz $(find . -name 'lib/lib*.so') $(find . -name 'include/*.h');
     ls -R
