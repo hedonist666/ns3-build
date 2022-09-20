@@ -37,7 +37,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           brew update
-          brew install advancecomp automake brotli nasm pkg-config cartr/qt4/qt-legacy-formula bzr unrar p7zip xz cMake
+          brew install advancecomp automake brotli nasm pkg-config cartr/qt4/qt-legacy-formula bzr rar p7zip xz cMake
       - name: Build ${{ matrix.platform }}
         id: build-release
         run: ./build.sh 3.29 ${{ matrix.platform }}
