@@ -23,8 +23,18 @@ buildNs3() {
 for flavour in darwin-x64 darwin-arm64v8; do
   if [ $PLATFORM = $flavour ] && [ "$(uname)" == "Darwin" ]; then
     echo "Building $flavour..."
+    brew update
+    brew install advancecomp automake pkg-config cartr/qt4/qt-legacy-formula bzr rar p7zip xz cMake
+    curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.7.2.tar.bz2
+    tar xf MacPorts-2.7.2.tar.bz2
+    cd MacPorts-2.7.2/
+    ./configure
+    make
+    sudo make install
     export PATH=$PATH:/opt/local/bin
+    sudo port -v selfupdate
     sudo port install mercurial autoconf cvs
+    cd ..
     installBoost
     #cd netanim-3.107
     #make
@@ -53,5 +63,6 @@ for flavour in linux-x64 linux-armv6 linux-armv7 linux-arm64v8; do
     docker build -t ns3-dev-$flavour $flavour
     mkdir $flavour-build
     docker run --rm -v $(pwd)/$flavour-build:/root/output ns3-dev-$flavour sh -c "cp -r /root/ns3/* /root/output"
+    tar czvf $flavour.tgz $(pwd)/$flavour-build/*
   fi
 done
