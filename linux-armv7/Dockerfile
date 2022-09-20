@@ -37,11 +37,3 @@ RUN cd ns-allinone-$version/bake && \
 RUN mkdir ns3 && \
     mv /root/ns-allinone-$version/bake/build/* ns3 && \
     rm -rf /root/ns-allinone-$version 
-
-#updating LD_LIBRARY_PATH and PATH
-RUN echo "ns3Path=/root/ns3/lib" >> /root/.bashrc && \
-    echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ns3Path' >> /root/.bashrc && \
-    echo 'export PATH=$PATH:$ns3Path' >> /root/.bashrc
-
-#installing node-gyp
-RUN npm i node-gyp -g
