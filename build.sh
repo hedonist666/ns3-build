@@ -15,7 +15,7 @@ buildNs3() {
   hg clone http://code.nsnam.org/bake
   cd bake
   ./bake.py configure -e ns-3-allinone 
-  ./bake.py deploy
+  ./bake.py deploy -v
 }
 
 # macOS
