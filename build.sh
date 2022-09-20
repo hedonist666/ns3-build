@@ -7,7 +7,7 @@ PLATFORM="${2:-all}"
 installBoost() {
   wget https://boostorg.jfrog.io/artifactory/main/release/1.67.0/source/boost_1_67_0.tar.gz
   tar xzvf boost_1_67_0.tar.gz
-  cd boost_1_67_0 && ./bootstrap.sh && ./b2 install && cd ..
+  cd boost_1_67_0 && ./bootstrap.sh && sudo ./b2 install && cd ..
   rm -rf boost_1_67_0.tar.gz boost_1_67_0
 }
 
@@ -38,8 +38,6 @@ for flavour in darwin-x64 darwin-arm64v8; do
     cd $root
     installBoost
     cd $root
-    #cd netanim-3.107
-    #make
     pip3 install waf
     buildNs3
     tar czvf $flavour.tgz $(find . -name 'lib/lib*.so') $(find . -name 'include/*.h');
